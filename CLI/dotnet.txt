@@ -1,0 +1,7 @@
+dotnet
+dotnet --info
+dotnet --list-sdks - показать список всех установленных SDK
+
+dotnet new <template_short_name> --name <projectName> - создать папку с указанным именем с проектом внутри
+dotnet new <template_short_name> - создать проект в текущей директории
+dotnet new list - показать список всех template'ов
