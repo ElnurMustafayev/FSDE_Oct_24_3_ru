@@ -1,2 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿void MyFunc()
+{
+    int num = 1;
+    num++;
+    Console.WriteLine("FUNC");
+    Console.WriteLine(num);
+}
+
+MyFunc();
+MyFunc();
+MyFunc();

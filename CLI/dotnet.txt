@@ -5,3 +5,8 @@ dotnet --list-sdks - показать список всех установлен
 dotnet new <template_short_name> --name <projectName> - создать папку с указанным именем с проектом внутри
 dotnet new <template_short_name> - создать проект в текущей директории
 dotnet new list - показать список всех template'ов
+
+dotnet run - скомпилировать и запустить проект
+dotnet run --project <path_to_csproj_file>
+
+dotnet build - скомпилировать проект
