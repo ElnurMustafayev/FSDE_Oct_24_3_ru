@@ -82,18 +82,50 @@ else
 
 
 
+// ref
+//void ChangeValue(ref int numToChange)
+//{
+//    numToChange += 100;
+//    Console.WriteLine(numToChange);
+//}
 
+//int num = 777;
+//ChangeValue(ref num);
+//Console.WriteLine(num);
 
-
-
-// ref, out, in
-
-void ChangeValue(ref int numToChange)
+enum OperationTypes : int
 {
-    numToChange += 100;
-    Console.WriteLine(numToChange);
+    plus,
+    minus,
+    divide, 
+    multiply,
+    power
 }
 
-int num = 777;
-ChangeValue(ref num);
-Console.WriteLine(num);
+class Program
+{
+    public static void ChangeValue(out double result, double number, double valueToChange, in OperationTypes operationType)
+    {
+        if (operationType == OperationTypes.plus)
+            result = number + valueToChange;
+        else if (operationType == OperationTypes.minus)
+            result = number - valueToChange;
+        else if (operationType == OperationTypes.multiply)
+            result = number * valueToChange;
+        else if (operationType == OperationTypes.divide)
+            result = number / valueToChange;
+        else
+            result = number;
+    }
+
+    public static void Main()
+    {
+        OperationTypes operationType = OperationTypes.plus;
+
+        // out
+        double num = 4;
+        ChangeValue(out double result, num, valueToChange: 2, operationType);
+
+        Console.WriteLine(result);
+    }
+}
