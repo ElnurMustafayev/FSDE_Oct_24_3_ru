@@ -95,11 +95,10 @@ else
 
 enum OperationTypes : int
 {
-    plus,
+    plus = 1,
     minus,
     divide, 
     multiply,
-    power
 }
 
 class Program
@@ -118,14 +117,77 @@ class Program
             result = number;
     }
 
+    public static OperationTypes GetOperationTypeByUserInput()
+    {
+        const OperationTypes defaultOperationType = OperationTypes.plus;
+        Console.WriteLine("Operation type:");
+
+        //Console.WriteLine("{0}: {1}", OperationTypes.plus, (int)OperationTypes.plus);
+        Console.WriteLine($"{OperationTypes.plus}: {(int)OperationTypes.plus}");
+        Console.WriteLine($"{OperationTypes.minus}: {(int)OperationTypes.minus}");
+        Console.WriteLine($"{OperationTypes.divide}: {(int)OperationTypes.divide}");
+        Console.WriteLine($"{OperationTypes.multiply}: {(int)OperationTypes.multiply}");
+        Console.WriteLine();
+
+        string operationTypeInput = Console.ReadLine();
+        OperationTypes operationType = (OperationTypes)int.Parse(operationTypeInput);
+
+        bool isInOperationsRange = OperationTypes.plus <= operationType && operationType <= OperationTypes.multiply;
+
+        if (isInOperationsRange)
+            return operationType;
+
+        return defaultOperationType;
+    }
+
+    public static void Proceed(out double result, in double first, in double second)
+    {
+        OperationTypes operationType = GetOperationTypeByUserInput();
+
+        switch (operationType)
+        {
+            case OperationTypes.plus:
+                result = first + second;
+                break;
+            case OperationTypes.minus:
+                result = first - second;
+                break;
+            case OperationTypes.divide:
+                result = first / second;
+                break;
+            case OperationTypes.multiply:
+                result = first * second;
+                break;
+            default:
+                result = 0;
+                break;
+        }
+    }
+
     public static void Main()
     {
-        OperationTypes operationType = OperationTypes.plus;
+        //OperationTypes operationType = OperationTypes.plus;
 
-        // out
-        double num = 4;
-        ChangeValue(out double result, num, valueToChange: 2, operationType);
+        //// out
+        //double num = 4;
+        //ChangeValue(out double result, num, valueToChange: 2, operationType);
 
+        //Console.WriteLine(result);
+
+
+
+        // 1.у пользователя спрашивается: операция(+, -,/, *), первое и второе числа
+        // 2.на экран пользователя выводится результат(result) операции(в Main методе)
+        // 
+        // void Proceed(out double result, in double first, in double second);
+
+        Console.Write("First number: ");
+        double first = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Second number: ");
+        double second = Convert.ToDouble(Console.ReadLine());
+
+        Proceed(out double result, first, second);
         Console.WriteLine(result);
     }
 }
