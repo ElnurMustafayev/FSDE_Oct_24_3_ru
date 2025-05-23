@@ -93,12 +93,15 @@ else
 //ChangeValue(ref num);
 //Console.WriteLine(num);
 
+using System.Collections.Generic;
+
 enum OperationTypes : int
 {
     plus = 1,
     minus,
     divide, 
     multiply,
+    power,
 }
 
 class Program
@@ -116,7 +119,45 @@ class Program
         else
             result = number;
     }
-
+    public static char GetOperationSymbol(in OperationTypes operationType)
+    {
+        switch (operationType)
+        {
+            case OperationTypes.plus:
+                return '+';
+            case OperationTypes.minus:
+                return '-';
+            case OperationTypes.divide:
+                return '/';
+            case OperationTypes.multiply:
+                return '*';
+            default:
+                throw new NotImplementedException($"There is not symbol for operation: {operationType}");
+        }
+    }
+    public static double GetOperationResult(in double first, in double second, in OperationTypes operationType)
+    {
+        switch (operationType)
+        {
+            case OperationTypes.plus:
+                return first + second;
+            case OperationTypes.minus:
+                return first - second;
+            case OperationTypes.divide:
+                if (second == 0)
+                    throw new DivideByZeroException();
+                return first / second;
+            case OperationTypes.multiply:
+                return first * second;
+            default:
+                throw new NotImplementedException($"There is not calculation implementation for operation: {operationType}");
+        }
+    }
+    public static double GetOperationResult(in double first, in double second, in OperationTypes operationType, out char operationSymbol)
+    {
+        operationSymbol = GetOperationSymbol(operationType);
+        return GetOperationResult(first, second, operationType);
+    }
     public static OperationTypes GetOperationTypeByUserInput()
     {
         const OperationTypes defaultOperationType = OperationTypes.plus;
@@ -127,41 +168,37 @@ class Program
         Console.WriteLine($"{OperationTypes.minus}: {(int)OperationTypes.minus}");
         Console.WriteLine($"{OperationTypes.divide}: {(int)OperationTypes.divide}");
         Console.WriteLine($"{OperationTypes.multiply}: {(int)OperationTypes.multiply}");
-        Console.WriteLine();
+        Console.Write("Choose your operation: ");
 
         string operationTypeInput = Console.ReadLine();
         OperationTypes operationType = (OperationTypes)int.Parse(operationTypeInput);
 
         bool isInOperationsRange = OperationTypes.plus <= operationType && operationType <= OperationTypes.multiply;
 
-        if (isInOperationsRange)
-            return operationType;
+        if (isInOperationsRange == false)
+            throw new Exception("Operation is out of range!");
 
-        return defaultOperationType;
+        return operationType;
     }
-
     public static void Proceed(out double result, in double first, in double second)
     {
         OperationTypes operationType = GetOperationTypeByUserInput();
 
-        switch (operationType)
+        result = GetOperationResult(first, second, operationType, out char operationSymbol);
+        //char operationSymbol = GetOperationSymbol(operationType);
+
+        Console.WriteLine($"{first} {operationSymbol} {second} = {result}");
+    }
+    public static double TryGetInputedValue(string message)
+    {
+        bool parsed = false;
+        double result = 0;
+        while (parsed == false)
         {
-            case OperationTypes.plus:
-                result = first + second;
-                break;
-            case OperationTypes.minus:
-                result = first - second;
-                break;
-            case OperationTypes.divide:
-                result = first / second;
-                break;
-            case OperationTypes.multiply:
-                result = first * second;
-                break;
-            default:
-                result = 0;
-                break;
+            Console.Write($"{message}: ");
+            parsed = double.TryParse(Console.ReadLine(), out result);
         }
+        return result;
     }
 
     public static void Main()
@@ -176,18 +213,19 @@ class Program
 
 
 
-        // 1.у пользователя спрашивается: операция(+, -,/, *), первое и второе числа
+        // 1.у пользователя спрашивается: операция(+, -, /, *), первое и второе числа
         // 2.на экран пользователя выводится результат(result) операции(в Main методе)
         // 
         // void Proceed(out double result, in double first, in double second);
 
-        Console.Write("First number: ");
-        double first = Convert.ToDouble(Console.ReadLine());
-
-        Console.Write("Second number: ");
-        double second = Convert.ToDouble(Console.ReadLine());
+        double first = TryGetInputedValue("First number");
+        double second = TryGetInputedValue("Second number");
 
         Proceed(out double result, first, second);
-        Console.WriteLine(result);
+
+        //double first = 200;
+        //double second = 600;
+        //var result = GetOperationResult(first, second, OperationTypes.power, out char operationSymbol);
+        //Console.WriteLine($"{first} {operationSymbol} {second} = {result}");
     }
 }
