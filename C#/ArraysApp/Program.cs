@@ -49,6 +49,8 @@
 //    Console.WriteLine(numbers[i]);
 //}
 
+
+/*
 Random random = new Random();
 
 for (int i = 0; i < 100; i++)
@@ -70,3 +72,67 @@ for (int i = 0; i < 100; i++)
 
     Console.ResetColor();
 }
+*/
+
+
+// int[] arr = new int[8];
+
+
+/*
+void ChangeRandomElementToRandomValue(int[] nums)
+{
+    Random random = new Random();
+
+    int randomIndex = random.Next(nums.Length);
+    int randomValue = random.Next();
+
+    nums[randomIndex] = randomValue;
+}
+
+
+void PrintArray(int[] nums)
+{
+    Console.WriteLine($"array length: {nums.Length}");
+    for (int i = 0; i < nums.Length; i++)
+    {
+        Console.Write($"{nums[i]} ");
+    }
+    Console.WriteLine();
+}
+
+int[] arr = new int[3];
+
+PrintArray(arr);
+ChangeRandomElementToRandomValue(arr);
+PrintArray(arr);
+ChangeRandomElementToRandomValue(arr);
+PrintArray(arr);
+*/
+
+
+
+/*
+void FillAllNamesByUserInput(string[] names)
+{
+    Console.WriteLine("Input all names: ");
+    for (int i = 0; i < names.Length; i++)
+    {
+        Console.Write($"{i + 1}/{names.Length}: ");
+        names[i] = Console.ReadLine();
+    }
+}
+
+void PrintAllNames(string[] names)
+{
+    Console.WriteLine("All names: ");
+    for (int i = 0; i < names.Length; i++)
+    {
+        Console.WriteLine($"{i + 1}: {names[i]}");
+    }
+}
+
+string[] names = new string[3];
+
+FillAllNamesByUserInput(names);
+PrintAllNames(names);
+*/
