@@ -10,8 +10,6 @@
 //Car car = new Car("Bmw");
 //car.WheelsCount = 10;
 
-
-
 Vehicle vehicle = new Car();
 
 vehicle.Move();
