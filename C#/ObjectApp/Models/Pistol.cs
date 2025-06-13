@@ -1,0 +1,22 @@
+﻿using ObjectApp.Interfaces;
+
+namespace ObjectApp.Models;
+
+class Pistol : Weapon, IShootable, IThrowable
+{
+    public void Shoot()
+    {
+        Console.WriteLine("ratatatata");
+    }
+
+    public void Throw()
+    {
+        Console.WriteLine("pistol is throwing...");
+    }
+
+    public override void Use()
+    {
+        this.Shoot();
+        this.Throw();
+    }
+}
