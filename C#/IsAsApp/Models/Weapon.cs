@@ -1,4 +1,4 @@
-﻿namespace ObjectApp.Models;
+﻿namespace IsAsApp.Models;
 
 abstract class Weapon
 {

@@ -1,6 +1,6 @@
-﻿using ObjectApp.Interfaces;
+﻿using IsAsApp.Interfaces;
 
-namespace ObjectApp.Models;
+namespace IsAsApp.Models;
 
 class Bomb : Weapon, IBoom, IThrowable
 {

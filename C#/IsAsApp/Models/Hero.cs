@@ -1,11 +1,11 @@
-﻿using ObjectApp.Interfaces;
+﻿using IsAsApp.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectApp.Models;
+namespace IsAsApp.Models;
 
 class Hero
 {

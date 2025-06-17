@@ -1,44 +1,22 @@
-﻿using ObjectApp.Interfaces;
-using ObjectApp.Models;
-
-//Bomb bomb = new Bomb();
-
-//if(bomb is IShootable)
-//{
-//    Console.WriteLine("IS");
-//}
-//else if (bomb is not IShootable)
-//{
-//    Console.WriteLine("IS NOT");
-//}
-
-
-/*
-Weapon weapon = new KamikazeCar();
-
-bool isThrowable = weapon is IThrowable;
-Console.WriteLine($"Weapon is Throwable: {isThrowable}");
-
-//IThrowable throwable = (IThrowable)weapon;
-IThrowable throwable = weapon as IThrowable;
-
-if(throwable is null)
-{
-    return;
-}
-
-throwable.Throw();
-*/
+﻿//var variable = new List<Tuple<Dictionary<int, string>, string>>();
+//variable = "qwerty";
+//Console.WriteLine(variable);
 
 
 
+//dynamic d = 100;
+//d = "qwerty";
+//d = true;
+////d.Bob();
+//Console.WriteLine(d.ToUpper());
 
-Hero hero = new Hero();
-hero.Weapons = [
-    new Bomb(),
-    new Pistol(),
-    new KamikazeCar(),
-];
 
-hero.UseWeapon(2);
-hero.ThrowAllWeapons();
+
+object obj = 123;
+obj = "qwerty";
+obj = new object();
+obj = new Random();
+obj = true;
+obj = new int[] { 1,2,3 };
+
+Console.WriteLine(obj);

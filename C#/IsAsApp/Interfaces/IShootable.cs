@@ -1,4 +1,4 @@
-﻿namespace ObjectApp.Interfaces;
+﻿namespace IsAsApp.Interfaces;
 
 interface IShootable
 {
