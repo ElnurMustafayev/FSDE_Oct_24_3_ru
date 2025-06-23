@@ -72,7 +72,7 @@ if(false)
     }
 }
 
-if(true)
+if(false)
 {
     const int EXCEPT_NUMBER = 5;
     void ShowNumbers(int[] nums, int exceptNumber = EXCEPT_NUMBER)
@@ -127,4 +127,81 @@ if(true)
     //ShowNumbers(nums, 5);
 
     ShowNumbersWithPredicate(nums, WhenToShowCondition, HowToShowNumber);
+}
+
+if(false)
+{
+    MyAction<bool> action = new MyAction<bool>(delegate (bool check)
+    {
+        if(check == true)
+            Console.WriteLine("1. LET'S GO");
+    });
+
+    action += delegate (bool check)
+    {
+        if (check == true)
+            Console.WriteLine("2. LET'S GO");
+    };
+
+    // void MyAction(bool obj);
+    // Lambda Expression
+    action += (check) =>
+    {
+        if (check == true)
+            Console.WriteLine("3. LET'S GO");
+    };
+
+    action.Invoke(true);
+}
+
+if(false)
+{
+    int GetSumOf(int[] nums, MyPredicate<int> condition)
+    {
+        int counter = 0;
+        foreach(var num in nums)
+        {
+            if(condition.Invoke(num) == true)
+            {
+                counter++;
+            }
+        }
+
+        return counter;
+    }
+
+    var result = GetSumOf(
+        nums: [1, 2, 3, 5],
+        condition: (num) => num % 2 == 1
+        );
+
+    Console.WriteLine(result);
+}
+
+if(true)
+{
+    Action action1 = () => Console.WriteLine("Hello World!");
+    Action<string, double> action2 = (text, num) => Console.WriteLine($"{text}: '{num}'");
+
+    Predicate<string> predicate1 = (str) => str.Length >= 10;
+    Console.WriteLine(predicate1.Invoke("TEST"));
+
+    Predicate<object> predicate2 = (obj) => obj is string;
+    Console.WriteLine(predicate2.Invoke('A'));
+
+    Func<int> func1 = () => 100;
+    Func<int, string, decimal> func2 = (num, text) =>
+    {
+        if (num < 0)
+        {
+            return num;
+        }
+        else if (text.Length > 6)
+        {
+            return -num;
+        }
+        return num + text.Length;
+    };
+
+    Console.WriteLine(func2(12, "QWERTY").GetType());
 }
