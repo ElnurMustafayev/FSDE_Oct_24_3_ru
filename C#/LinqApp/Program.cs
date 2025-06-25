@@ -42,3 +42,15 @@ foreach (var studentMark in student.Marks)
 //{
 //    Console.WriteLine(item);
 //}
+
+
+// int[] nums = new int[]
+// {
+//     1,2,3,4,5,6,7,8,9
+// };
+
+// int result1 = nums.Count(); // bad
+// int result2 = nums.Length;  // good
+
+// System.Console.WriteLine(result1);
+// System.Console.WriteLine(result2);
