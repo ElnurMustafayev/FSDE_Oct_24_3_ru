@@ -34,7 +34,6 @@ class Application
                         break;
                     case ConsoleKey.D2:
                         productMenuService.Read();
-                        Console.ReadKey(true);
                         break;
                     case ConsoleKey.D3:
                         return;

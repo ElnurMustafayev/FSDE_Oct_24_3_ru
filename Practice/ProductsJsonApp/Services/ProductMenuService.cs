@@ -1,4 +1,5 @@
 ﻿using ProductsJsonApp.Models;
+using ProductsJsonApp.Repositories;
 
 namespace ProductsJsonApp.Services;
 
@@ -11,13 +12,11 @@ namespace ProductsJsonApp.Services;
 
 class ProductMenuService
 {
-    private readonly List<Product> products;
-    private readonly ProductFileService productFileService;
+    private readonly ProductRepository repository;
 
     public ProductMenuService()
     {
-        this.products = new List<Product>();
-        this.productFileService = new ProductFileService();
+        this.repository = new ProductRepository();
     }
 
     public void Create()
@@ -33,24 +32,29 @@ class ProductMenuService
             throw new ArgumentException("Price must be numeric!");
         }
 
-        var newProduct = new Product(name, price);
-        this.products.Add(newProduct);
+        var createdProduct = this.repository.Create(name, price);
+        this.repository.SaveAll();
 
-        //this.productFileService.SaveProducts(this.products);
-        this.productFileService.SaveProduct(newProduct);
+        Console.WriteLine($"Product has been created successfully with id '{createdProduct.Id}'");
+
+        Console.ReadKey(true);
     }
 
     public void Read()
     {
-        if(this.products.Any() == false)
+        var allProducts = this.repository.GetAll();
+        if(allProducts.Any() == false)
         {
             Console.WriteLine("There are no products...");
-            return;
+        }
+        else
+        {
+            foreach (var product in allProducts)
+            {
+                Console.WriteLine(product);
+            }
         }
 
-        foreach (var product in this.products)
-        {
-            Console.WriteLine(product);
-        }
+        Console.ReadKey(true);
     }
 }

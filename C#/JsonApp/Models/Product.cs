@@ -1,10 +1,10 @@
 ﻿using System.Xml.Linq;
 
-namespace ProductsJsonApp.Models;
+namespace JsonApp.Models;
 
 public class Product
 {
-    public static int IdCounter = 0;
+    private static int idCounter = 0;
     public int Id { get; set; }
     public string Name { get; set; }
     public decimal Price { get; set; }
@@ -15,10 +15,10 @@ public class Product
 
     public Product(string name, decimal price)
     {
-        this.Id = ++Product.IdCounter;
+        this.Id = ++Product.idCounter;
+        this.AddedDateTime = DateTime.Now;
         this.Name = name;
         this.Price = price;
-        this.AddedDateTime = DateTime.Now;
     }
 
     public override string ToString()
