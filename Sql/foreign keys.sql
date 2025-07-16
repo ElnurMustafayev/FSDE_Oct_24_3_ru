@@ -75,3 +75,13 @@ where g.GenreCode in (select top 3 Code from GameGenres)
 
 delete Games
 where GenreCode not in (select Code from GameGenres)
+
+select * from GameGenres;
+
+select *
+from Games
+where Id between 30 and 40
+
+update Games
+set GenreCode = 100
+where Id = 14
