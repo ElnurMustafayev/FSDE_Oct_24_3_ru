@@ -52,12 +52,39 @@ insert into BlogComments ([userid], [text], [reaction], [blogid]) values
 (@aliceId, 'Thanks for sharing these travel tips!', 4, @blog2),
 (@bobId, 'Interesting analysis, I use some of these languages.', null, @blog3);
 
-
-
-
 -- username, blogtitle, reaction
 
 select u.username, b.title, bc.reaction 
 from BlogComments bc
 join Users u on u.id = bc.userid
 join Blogs b on b.id = bc.blogid
+
+
+
+
+
+-- many-to-many
+
+--UsersChats
+--Id, UserId, ChatId
+--1,	333,	555,
+--2,	123,	555,
+--3,	550,	770,
+--4,	123,	770,
+
+create table Users (
+	Id int primary key identity,
+	Name nvarchar(50) not null
+)
+
+create table Chats (
+	Id int primary key identity,
+	Title nvarchar(30) not null
+)
+
+create table UsersChats (
+	UserId int foreign key references Users(Id) not null,
+	ChatId int foreign key references Chats(Id) not null,
+
+	constraint PK_UsersChats primary key clustered (UserId, ChatId)
+)
