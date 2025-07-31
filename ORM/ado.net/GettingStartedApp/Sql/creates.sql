@@ -1,0 +1,19 @@
+CREATE TABLE Countries (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Groups (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Students (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Fullname NVARCHAR(200) NOT NULL,
+    BirthDate DATE NOT NULL,
+    CountryId INT NULL,
+    GroupId INT NULL,
+    FOREIGN KEY (CountryId) REFERENCES Countries(Id),
+    FOREIGN KEY (GroupId) REFERENCES Groups(Id)
+);

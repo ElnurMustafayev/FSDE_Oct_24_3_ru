@@ -1,12 +1,14 @@
-﻿namespace GettingStartedApp.Entities;
+﻿using System.Diagnostics.Metrics;
 
-class Student
+namespace GettingStartedApp.Entities;
+
+class StudentDetailed
 {
-    public int Id { get; set; }
+    public required int Id { get; set; }
     public required string Fullname { get; set; }
     public required DateTime BirthDate { get; set; }
-    public object CountryId { get; set; }
-    public object GroupId { get; set; }
+    public Country? Country { get; set; }
+    public Group? Group { get; set; }
 
     public override string ToString()
     {
@@ -14,7 +16,7 @@ class Student
                $"- ID: {Id}\n" +
                $"- Full Name: {Fullname}\n" +
                $"- Birth Date: {BirthDate}\n" +
-               $"- Country ID: {(CountryId)}\n" +
-               $"- Group ID: {(GroupId)}";
+               $"- Country: {Country}\n" +
+               $"- Group: {Group}";
     }
 }
