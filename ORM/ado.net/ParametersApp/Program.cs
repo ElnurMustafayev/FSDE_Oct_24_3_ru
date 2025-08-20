@@ -10,7 +10,11 @@ User? GetUserByEmail(string email)
     connection.Open();
 
     var command = connection.CreateCommand();
-    command.CommandText = $"select * from Users where Email = N'{email}'"; // <--- SQL Injection
+    //command.CommandText = $"select * from Users where Email = N'{email}'"; // <--- SQL Injection
+
+    command.CommandText = $"select * from Users where Email = @emailToSearch";
+    command.Parameters.Add(new SqlParameter("emailToSearch", value: email));
+
     var reader = command.ExecuteReader();
 
     if (reader.Read() == false)
