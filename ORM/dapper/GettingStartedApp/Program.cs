@@ -1,39 +1,89 @@
-﻿using GettingStartedApp.Models;
+﻿using Dapper;
+using GettingStartedApp.Exceptions;
+using GettingStartedApp.Models;
 using Microsoft.Data.SqlClient;
-using Dapper;
+
+void PrintDangerMessage(string message)
+{
+    Console.BackgroundColor = ConsoleColor.DarkRed;
+    Console.ForegroundColor = ConsoleColor.White;
+
+    Console.WriteLine(message);
+
+    Console.ResetColor();
+}
 
 const string connectionString = "Server=localhost;Database=UsersDb;User Id=admin;Password=admin;TrustServerCertificate=True;";
 
 using var connection = new SqlConnection(connectionString);
 connection.Open();
 
-var users = connection.Query<User>("select * from Users where IsActive = true");
-
-foreach (var user in users)
+while(true)
 {
-    Console.WriteLine($"{user.FirstName} {user.LastName}");
+    try
+    {
+        Console.Clear();
+        Console.Write("Input user's id to delete: ");
+        var idToDeleteStr = Console.ReadLine();
+
+        if(int.TryParse(idToDeleteStr, out int idToDelete) == false)
+        {
+            throw new ArgumentException("Invalid Id input!", paramName: "id");
+        }
+
+        var foundUser = connection.QueryFirstOrDefault<User>(
+            sql:    $@"select * from Users
+                    where Id = @IdToDelete",
+            param: new 
+            {
+                IdToDelete = idToDelete
+            })
+            ?? throw new NotFoundException(entityName: nameof(User));
+
+        Console.WriteLine(foundUser);
+
+        PrintDangerMessage(@$"Attention!!!
+You want to delete user '{foundUser.Email}'!
+Please input user's {nameof(foundUser.FirstName)} below:");
+
+        var confirmFirstNameForDelete = Console.ReadLine();
+
+        if(confirmFirstNameForDelete != foundUser.FirstName)
+        {
+            throw new ArgumentException("Invalid CAPTCHA input!", paramName: "confirm user FirstName");
+        }
+
+        var deletedItemsCount = connection.Execute(
+            sql:    $@"delete from Users
+                    where Id = @IdToDelete",
+            param: new
+            {
+                IdToDelete = idToDelete
+            });
+
+        if(deletedItemsCount != 1)
+        {
+            throw new Exception(@$"Something went wrong in deletion...
+Affected rows count: {deletedItemsCount}");
+        }
+
+        Console.WriteLine($"User '{foundUser.Email}' deleted successfully!");
+        Console.ReadKey();
+    }
+    catch(NotFoundException ex)
+    {
+        Console.WriteLine(ex.Message);
+        Console.ReadKey();
+    }
+    catch (ArgumentException ex)
+    {
+        Console.WriteLine($"{ex.ParamName}: {ex.Message}");
+        Console.ReadKey();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Critical Error!!!");
+        Console.WriteLine($"Error: {ex.ToString()}");
+        Console.ReadKey();
+    }
 }
-
-connection.QueryFirstOrDefault<User>("select * from Users where Id = 123");
-connection.ExecuteScalar<long>("select 10");
-var affectedRowsCount = connection.Execute("delete from Users where Id % 2 = 1");
-//connection.Execute("exec myproc");
-
-// using var command = new SqlCommand("select * from Users", connection);
-
-// var reader = command.ExecuteReader();
-
-// if (reader.Read() == false)
-// {
-//     return;
-// }
-
-// var foundUser = new User
-// {
-//     Id = reader.GetInt32(0),
-//     FirstName = reader.GetString(1),
-//     LastName = reader.GetString(2),
-//     Email = reader.GetString(3),
-// };
-
-// System.Console.WriteLine(foundUser);
