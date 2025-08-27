@@ -3,7 +3,7 @@
 // 3. dotnet add package Microsoft.EntityFrameworkCore.Design --version 9.0.8
 // 4. dotnet tool install --global dotnet-ef
 // 5. dotnet-ef migrations add "Init Project"
-// 6. dotnet-ef datebase update
+// 6. dotnet-ef database update
 
 using GettingStartedApp.Data;
 using GettingStartedApp.Models;

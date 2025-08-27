@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelationsApp", "RelationsApp.csproj", "{A89E41C7-D97B-745E-5132-8508E4BB1659}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A89E41C7-D97B-745E-5132-8508E4BB1659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A89E41C7-D97B-745E-5132-8508E4BB1659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A89E41C7-D97B-745E-5132-8508E4BB1659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A89E41C7-D97B-745E-5132-8508E4BB1659}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF5542FE-920C-46A2-8738-EFB9BEA13F0B}
+	EndGlobalSection
+EndGlobal
