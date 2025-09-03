@@ -1,8 +1,4 @@
-﻿using ReflectionApp.Models;
-using System.Reflection;
-using System.Text.Json;
-
-//var user = new User("Bob");
+﻿//var user = new User("Bob");
 
 //var userJson = JsonSerializer.Serialize(user, new JsonSerializerOptions
 //{
@@ -49,6 +45,7 @@ using System.Text.Json;
 
 
 
+/*
 void ListMembers<T>(T obj)
 {
     var type = typeof(T);
@@ -83,3 +80,42 @@ Console.WriteLine();
 User user = new User("Bob");
 
 ListMembers(user);
+*/
+
+
+
+/*
+const string printAllMethodName = "PrintAll";
+
+var obj = new MyClass(15.3);
+
+var printMethod = typeof(MyClass)
+    .GetMethod(printAllMethodName);
+//.GetMethods()
+//.First(method => method.Name == "PrintAll");
+
+if (printMethod is null)
+{
+    Console.WriteLine($"{printAllMethodName} not found");
+    return;
+}
+
+var result = printMethod.Invoke(obj, null);
+
+Console.WriteLine(printMethod);
+*/
+
+
+using ReflectionApp.Models;
+
+var staticMethodInfo = typeof(MyClass)
+    .GetMethod(nameof(MyClass.Sum));
+
+if (staticMethodInfo is null)
+{
+    throw new Exception($"Method {nameof(MyClass.Sum)} not found!");
+}
+
+var result = staticMethodInfo.Invoke(null, new object[] { 5, 2.5 });
+
+Console.WriteLine(result);
