@@ -35,9 +35,3 @@ var number = task.Result;
 
 Console.WriteLine($"Result: {number}");
 */
-
-
-
-
-// Создать и запустить Task который,
-// возвращает из базы данных самого старшего пользователя
