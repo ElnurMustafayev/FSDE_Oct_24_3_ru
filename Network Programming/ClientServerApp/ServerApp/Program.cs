@@ -12,7 +12,6 @@ while (true)
 {
     try
     {
-            
         var tcpClient = await listener.AcceptTcpClientAsync();
         System.Console.WriteLine($"New client connected: {tcpClient.Client.RemoteEndPoint}");
 
