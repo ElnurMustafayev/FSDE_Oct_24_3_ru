@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request for a Good Grade</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f7f9fc;
+            color: #333333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background: #ffffff;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        h1 {
+            color: #ea2828;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .signature {
+            margin-top: 40px;
+            font-style: italic;
+            color: #555555;
+        }
+        .highlight {
+            color: #2a7ae2;
+            font-weight: 600;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999999;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello, Professor {{professor_name}}!</h1>
+        <p>My name is <span class="highlight">{{student_name}}</span>, and I wanted to kindly ask if you could consider giving me a good grade for the English course.</p>
+        <p>I have been working very hard, attending all classes, and putting in my best effort to improve. Your support would mean a lot to me and encourage me to keep striving for excellence.</p>
+        <p>Thank you very much for your understanding and time.</p>
+        <p class="signature">Best regards,<br>{{student_name}}</p>
+    </div>
+    <div class="footer">
+        This message was sent with respect and appreciation.
+    </div>
+</body>
+</html>
