@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Простой HTML с картинками, CSS и JS через CDN</title>
+    <!-- Иконка вкладки -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/194/194279.png" type="image/x-icon">
+    <!-- Стили CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        img:hover {
+            transform: scale(1.1);
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Добро пожаловать на страницу с картинками и функционалом!</h1>
+
+    <div class="image-container">
+        <img src="https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?cs=srgb&dl=pexels-pixabay-45201.jpg&fm=jpg" alt="Природа">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/002/098/203/small_2x/silver-tabby-cat-sitting-on-green-background-free-photo.jpg" alt="Картинка 2">
+        <img src="https://media.tenor.com/_WZy7E7hoTcAAAAM/cat-smile.gif" alt="Картинка 3">
+    </div>
+
+    <button class="button" onclick="changeTitle()">Нажми на меня!</button>
+
+    <!-- Подключаем JS через CDN (Vanilla JS) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Пример с jQuery, если нужно -->
+    
+    <!-- Подключаем простой JS через CDN -->
+    <script>
+        // Функция для изменения текста заголовка
+        function changeTitle() {
+            document.querySelector('h1').textContent = 'Заголовок изменен!';
+        }
+    </script>
+
+</body>
+</html>
