@@ -1,0 +1,10 @@
+request:
+	Url		(http://domain.com:7071/routing/path?query=1&params=2/#)
+	MethodType	(GET, POST, PUT, DELETE)
+	Headers		(Content-Type=text/plain)
+	Body
+
+response:
+	Code		(200, 404, 500)
+	Headers		(Content-Type=application/json)
+	Body
